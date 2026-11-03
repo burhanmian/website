@@ -1,3 +1,3 @@
 # Burhan's studio
 
-First-person portfolio prototype. See the source for the current work in progress.
+Early first-person 3D portfolio prototype. Serve this directory as a static website. The room, character integration and mobile testing remain unfinished. No generated character or portrait is included.

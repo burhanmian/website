@@ -15,7 +15,7 @@ Serve the repository with `python3 -m http.server 4175`, then open http://localh
 - assets/: local Three.js r149 modules and loader dependencies.
 
 ## Character
-The personal generated character file is intentionally not in the public repository. The owner has it locally at `outputs/burhan-character.glb`; copy it to that relative path to reproduce the character preview. It has one skinned mesh and an in-place casual walk clip. Keep scale at 1: r149 static bounding-box measurements are misleading for this rig. Do not rescale it from those bounds.
+The owner-approved generated character is included at `outputs/burhan-character.glb`. No separate download is needed after cloning. It has one skinned mesh and an in-place casual walk clip. Keep scale at 1: r149 static bounding-box measurements are misleading for this rig. Do not rescale it from those bounds.
 
 Current idle uses rest transforms for hips, spine and legs; arms use an averaged walk pose. This corrects the bent idle stance but is not an authored idle animation. Walk weight follows travel speed; the camera and character follow separate paths. Pause freezes progress. Without the GLB, the room and portfolio remain usable.
 

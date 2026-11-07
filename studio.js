@@ -1,6 +1,6 @@
-import {isProjectOpen} from './project-view.js?v=31';
-import {createHardwareProjects} from './hardware-projects.js?v=31';
-import { createMonitorPortfolio } from './monitor-portfolio.js?v=31';
+import {isProjectOpen} from './project-view.js?v=32';
+import {createHardwareProjects} from './hardware-projects.js?v=32';
+import { createMonitorPortfolio } from './monitor-portfolio.js?v=32';
 import * as T from './assets/three.module.js';
 import { GLTFLoader } from './assets/GLTFLoader.js';
 import { journeyState, advanceProgress, deskSeatState, leavingSeat, blendAngle, ease, phase, WALK_METRES_PER_SECOND } from './journey-motion.mjs?v=31';
@@ -8,7 +8,7 @@ import { journeyState, advanceProgress, deskSeatState, leavingSeat, blendAngle, 
 const canvas=document.querySelector('#studio');
 const scene=new T.Scene();scene.background=new T.Color('#070b0a');scene.fog=new T.Fog('#070b0a',12,30);
 let renderer;try{renderer=new T.WebGLRenderer({canvas,antialias:true,alpha:false});}catch{document.querySelector('#scene-caption').textContent='Explore the work below.';return;}
-renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.outputEncoding=T.sRGBEncoding;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;
+renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.outputEncoding=T.sRGBEncoding;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;
 // Image-based light from a small dark room with one cool window and one warm lamp, so metal and varnish have something to reflect.
 {const pm=new T.PMREMGenerator(renderer),es=new T.Scene();es.add(new T.Mesh(new T.BoxGeometry(12,6,12),new T.MeshBasicMaterial({color:'#0b100e',side:T.BackSide})));
 const card=(w,h,c,k,x,y,z,ry,rx=0)=>{const m=new T.Mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({color:new T.Color(c).multiplyScalar(k),side:T.DoubleSide}));m.position.set(x,y,z);m.rotation.set(rx,ry,0);es.add(m);};
@@ -131,7 +131,7 @@ const sky=(()=>{const c=document.createElement('canvas');c.width=8;c.height=256;
 const skyPane=new T.Mesh(new T.PlaneGeometry(1.9,1.9),new T.MeshBasicMaterial({map:sky,toneMapped:false,color:'#ffffff'}));skyPane.position.set(-3.8,2.15,-.2);skyPane.rotation.y=Math.PI/2;world.add(skyPane);
 const person=new T.Group();person.name='Burhan';world.add(person);person.visible=false;
 const shoeVertices={Left:[],Right:[]},solePoint=new T.Vector3();
-let avatar=null,poseTracks=[],walkDuration=4.2,spine=null,spineRest=null,loadFailed=false;
+let avatar=null,poseTracks=[],walkDuration=4.2,spine=null,spineRest=null,loadFailed=false,lastAvatarShadowState=null;
 const hologram={solid:{value:0},time:{value:0},visibility:{value:1},head:{value:new T.Vector3()},headR:{value:0}};
 const padMat=new T.MeshBasicMaterial({color:'#4fd8ff',transparent:true,opacity:0,depthWrite:false,blending:T.AdditiveBlending,side:T.DoubleSide});
 const pad=new T.Group();[[.38,.42],[.62,.64],[.9,.915]].forEach(([i,o])=>{const r=new T.Mesh(new T.RingGeometry(i,o,72),padMat);r.rotation.x=-Math.PI/2;pad.add(r);});pad.position.y=.035;world.add(pad);
@@ -535,7 +535,7 @@ const intro=document.querySelector('.intro'),caption=document.querySelector('#sc
 button.setAttribute('aria-pressed',String(paused));button.textContent=paused?'Enable motion':'Pause motion';
 button.addEventListener('click',()=>{paused=!paused;button.setAttribute('aria-pressed',String(paused));button.textContent=paused?'Resume motion':'Pause motion';});
 window.addEventListener('pointermove',e=>{px=e.clientX/innerWidth-.5;py=e.clientY/innerHeight-.5;},{passive:true});
-function resize(){renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}window.addEventListener('resize',()=>{resize();bloom?.resize();});resize();bloom?.resize();
+function resize(){const pixelRatioCap=innerWidth<=700?1.2:1.5;renderer.setPixelRatio(Math.min(devicePixelRatio,pixelRatioCap));renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}window.addEventListener('resize',()=>{resize();bloom?.resize();});resize();bloom?.resize();
 const lerp=T.MathUtils.lerp;
 let route=new T.CatmullRomCurve3([new T.Vector3(-1.6,.025,1.65),new T.Vector3(-.8,.025,1.2),new T.Vector3(-.25,.025,.05),new T.Vector3(-.05,.025,-.25),new T.Vector3(.35,.025,-.25)]);
 let routeLength=route.getLength();const eyeHeight=1.6;
@@ -573,7 +573,9 @@ function benchWork(w,t){
 }
 
 zonesEl?.addEventListener('click',e=>{const b=e.target.closest('button[data-zone]');if(!b)return;const z=b.dataset.zone,atStart=progress<.3;if(atStart){if(z!==dest)setDest(z);}else if(z!==dest&&!transfer){transfer={to:z,stage:'leave'};heldKeys.clear();}zonesEl.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.zone===z)));});
-function frame(now){requestAnimationFrame(frame);const dt=Math.min((now-last)/1000,.05);last=now;if(document.hidden||isProjectOpen())return;if(printerMixer&&!paused)printerMixer.update(dt);
+let frameId=0;
+function scheduleFrame(){if(!frameId&&!document.hidden&&!isProjectOpen())frameId=requestAnimationFrame(frame);}
+function frame(now){frameId=0;if(document.hidden||isProjectOpen())return;scheduleFrame();const dt=Math.min((now-last)/1000,.05);last=now;if(printerMixer&&!paused)printerMixer.update(dt);
 let travelHeading=null,departingSeat=false;
 let target=T.MathUtils.clamp(scrollY/Math.max(1,journey.offsetHeight-innerHeight),0,1);
 if(!paused&&transfer?.stage==='leave'){
@@ -653,7 +655,8 @@ const lookAmount=state.screen*(mobile?.015:.06);
 gaze.x+=sx*lookAmount;gaze.y-=sy*lookAmount*.5;
 hologram.head.value.copy(headBone?headEye:eye);hologram.headR.value=.31*(1-phase(cameraPosition.distanceTo(hologram.head.value),.15,.5));
 person.visible=!!avatar;
-avatar?.traverse(o=>{if(o.isMesh)o.castShadow=state.solid>.95;});
+const avatarCastsShadow=state.solid>.95;
+if(avatar&&avatarCastsShadow!==lastAvatarShadowState){avatar.traverse(o=>{if(o.isMesh)o.castShadow=avatarCastsShadow;});lastAvatarShadowState=avatarCastsShadow;}
 // Camera remains still when scrolling stops; movement is owned by the dolly.
 if(zonesEl){
   const atStart=p<.3,atEnd=state.pov>.95;
@@ -671,5 +674,7 @@ rgbMats.forEach((m,i)=>m.color.setHSL((clock*.12+i*.05)%1,.9,.58));rgbLight.colo
 portfolio.update(dt,dest==='desk'&&state.pov>.96&&!transfer,reduced);
 hardwareProjects.update(dest==='bench'&&state.pov>.96&&!transfer);
 renderScene();}
-requestAnimationFrame(frame);
+document.addEventListener('visibilitychange',scheduleFrame);
+document.addEventListener('projectviewchange',scheduleFrame);
+scheduleFrame();
 })();

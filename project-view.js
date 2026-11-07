@@ -4,11 +4,11 @@ dialog.innerHTML='<div class="project-toolbar"><button type="button" data-back>â
 document.body.append(dialog);
 const content=dialog.querySelector('.project-body');let lastFocus=null,previousOverflow='',filter='All';
 export const isProjectOpen=()=>dialog.open;
-function show(){if(!dialog.open){lastFocus=document.activeElement;previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';dialog.showModal();}dialog.scrollTop=0;}
+function show(){if(!dialog.open){lastFocus=document.activeElement;previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';dialog.showModal();document.dispatchEvent(new Event('projectviewchange'));}dialog.scrollTop=0;}
 function close(){dialog.close();}
 dialog.querySelector('[data-back]').addEventListener('click',close);
 dialog.querySelector('[data-all]').addEventListener('click',()=>openArchive());
-dialog.addEventListener('close',()=>{document.body.style.overflow=previousOverflow;lastFocus?.focus({preventScroll:true});});
+dialog.addEventListener('close',()=>{document.body.style.overflow=previousOverflow;lastFocus?.focus({preventScroll:true});document.dispatchEvent(new Event('projectviewchange'));});
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export async function openArchive(){dialog.setAttribute('aria-label','All projects');show();content.innerHTML='<p>Loading projectsâ€¦</p>';try{const all=await projectsReady;
  content.innerHTML='<p class="project-eyebrow">Selected work</p><h1>Inside the work.</h1><p class="demo-notice">Demo projects for previewing the portfolio. Final project content is coming next.</p><div class="project-filters" role="group" aria-label="Filter projects"></div><div class="project-grid"></div>';

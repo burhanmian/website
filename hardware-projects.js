@@ -1,5 +1,5 @@
 import * as T from './assets/three.module.js';
-import {openProject,isProjectOpen} from './project-view.js?v=31';
+import {openProject,isProjectOpen} from './project-view.js?v=32';
 export function createHardwareProjects({world,camera,canvas}){
  const entries=[{name:'project-printer',id:'form',label:'Printer',offset:new T.Vector3(0,.35,0)},{name:'mcu-board',id:'sense',label:'Circuit board',offset:new T.Vector3(0,.12,0)},{name:'prototype',id:'light',label:'Prototype',offset:new T.Vector3(0,.18,0)}];
  const layer=document.createElement('div');layer.className='hardware-hotspots';layer.hidden=true;layer.setAttribute('aria-label','Hardware projects');document.querySelector('.stage').append(layer);

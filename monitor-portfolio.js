@@ -1,4 +1,4 @@
-import {projectsReady,openProject,isProjectOpen} from './project-view.js?v=31';
+import {projectsReady,openProject,isProjectOpen} from './project-view.js?v=32';
 import * as T from './assets/three.module.js';
 
 // One local content catalogue drives both the 3D screen and accessible controls.

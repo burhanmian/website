@@ -1,0 +1,11 @@
+Model Information:
+* title:	MetaFactory Ender3
+* source:	https://sketchfab.com/3d-models/metafactory-ender3-7bd2182f5fbd4b8980dcc02990818836
+* author:	m3org (https://sketchfab.com/m3org)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "MetaFactory Ender3" (https://sketchfab.com/3d-models/metafactory-ender3-7bd2182f5fbd4b8980dcc02990818836) by m3org (https://sketchfab.com/m3org) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

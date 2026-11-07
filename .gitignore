@@ -1,0 +1,11 @@
+/.taste-skill/
+/pcb-review/
+/outputs/*.zip
+/outputs/*.png
+/AGENT_HANDOFF.md
+/HANDOFF.md
+/QUALITY-REVIEW.md
+/PORTFOLIO-CONTENT.md
+/projects.json
+/assets/projects/
+/work/analyze-rig.mjs

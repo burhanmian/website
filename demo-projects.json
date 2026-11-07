@@ -1,0 +1,128 @@
+[
+  {
+    "id": "signal",
+    "title": "Signal \u2014 interface study",
+    "category": "UI/UX",
+    "station": "computer",
+    "demo": true,
+    "overview": "A sample interface for making a complex task feel simple.",
+    "contribution": "Sample role: Interface design. Replace this with your responsibilities, collaborators and scope.",
+    "process": [
+      "Explore the problem and identify the people using the product.",
+      "Build and compare early concepts through sketches and prototypes.",
+      "Test the interaction and document what changed."
+    ],
+    "results": "Demo content only. Add your actual outcomes, evidence, lessons and next steps here. No project results are claimed.",
+    "hint": "Change the density to explore the demo layout.",
+    "control": "Information density",
+    "image": "assets/demo-projects/signal.svg"
+  },
+  {
+    "id": "world",
+    "title": "Waypoint \u2014 game world",
+    "category": "Games",
+    "station": "computer",
+    "demo": true,
+    "overview": "A sample playable-world case study, ready for your game footage and development story.",
+    "contribution": "Sample role: Game design. Replace this with your responsibilities, collaborators and scope.",
+    "process": [
+      "Explore the problem and identify the people using the product.",
+      "Build and compare early concepts through sketches and prototypes.",
+      "Test the interaction and document what changed."
+    ],
+    "results": "Demo content only. Add your actual outcomes, evidence, lessons and next steps here. No project results are claimed.",
+    "hint": "Change the atmosphere to preview the scene.",
+    "control": "Atmosphere",
+    "image": "assets/demo-projects/world.svg"
+  },
+  {
+    "id": "voice",
+    "title": "Echo \u2014 AI companion",
+    "category": "AI",
+    "station": "computer",
+    "demo": true,
+    "overview": "A sample conversational product exploring how people interact with an assistant.",
+    "contribution": "Sample role: Interaction design. Replace this with your responsibilities, collaborators and scope.",
+    "process": [
+      "Explore the problem and identify the people using the product.",
+      "Build and compare early concepts through sketches and prototypes.",
+      "Test the interaction and document what changed."
+    ],
+    "results": "Demo content only. Add your actual outcomes, evidence, lessons and next steps here. No project results are claimed.",
+    "hint": "Adjust the response style in this illustrative demo.",
+    "control": "Response style",
+    "image": "assets/demo-projects/voice.svg"
+  },
+  {
+    "id": "twin",
+    "title": "Mirror \u2014 digital twin",
+    "category": "Digital twins",
+    "station": "computer",
+    "demo": true,
+    "overview": "A sample digital twin dashboard connecting a physical system to a visual interface.",
+    "contribution": "Sample role: Digital twin design. Replace this with your responsibilities, collaborators and scope.",
+    "process": [
+      "Explore the problem and identify the people using the product.",
+      "Build and compare early concepts through sketches and prototypes.",
+      "Test the interaction and document what changed."
+    ],
+    "results": "Demo content only. Add your actual outcomes, evidence, lessons and next steps here. No project results are claimed.",
+    "hint": "Move the input to see the simulated system respond.",
+    "control": "Simulation input",
+    "image": "assets/demo-projects/twin.svg"
+  },
+  {
+    "id": "form",
+    "title": "Form \u2014 printed prototype",
+    "category": "Hardware",
+    "station": "hardware",
+    "demo": true,
+    "overview": "A sample fabrication study, from early form exploration to a printed prototype.",
+    "contribution": "Sample role: Prototyping. Replace this with your responsibilities, collaborators and scope.",
+    "process": [
+      "Explore the problem and identify the people using the product.",
+      "Build and compare early concepts through sketches and prototypes.",
+      "Test the interaction and document what changed."
+    ],
+    "results": "Demo content only. Add your actual outcomes, evidence, lessons and next steps here. No project results are claimed.",
+    "hint": "Adjust the layer setting in the illustrative preview.",
+    "control": "Layer setting",
+    "image": "assets/demo-projects/form.svg"
+  },
+  {
+    "id": "sense",
+    "title": "Sense \u2014 connected circuit",
+    "category": "Hardware",
+    "station": "hardware",
+    "demo": true,
+    "overview": "A sample sensor-board case study showing a physical input and its digital response.",
+    "contribution": "Sample role: Physical computing. Replace this with your responsibilities, collaborators and scope.",
+    "process": [
+      "Explore the problem and identify the people using the product.",
+      "Build and compare early concepts through sketches and prototypes.",
+      "Test the interaction and document what changed."
+    ],
+    "results": "Demo content only. Add your actual outcomes, evidence, lessons and next steps here. No project results are claimed.",
+    "hint": "Move the sensor input to change the simulated reading.",
+    "control": "Sensor input",
+    "image": "assets/demo-projects/sense.svg"
+  },
+  {
+    "id": "light",
+    "title": "Pulse \u2014 interactive object",
+    "category": "Hardware",
+    "station": "hardware",
+    "demo": true,
+    "overview": "A sample responsive object connecting light, input and human interaction.",
+    "contribution": "Sample role: Interaction prototyping. Replace this with your responsibilities, collaborators and scope.",
+    "process": [
+      "Explore the problem and identify the people using the product.",
+      "Build and compare early concepts through sketches and prototypes.",
+      "Test the interaction and document what changed."
+    ],
+    "results": "Demo content only. Add your actual outcomes, evidence, lessons and next steps here. No project results are claimed.",
+    "hint": "Adjust the input to change the demo output.",
+    "control": "Light input",
+    "image": "assets/demo-projects/light.svg"
+  }
+]
